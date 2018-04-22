@@ -2,6 +2,12 @@
 
 A Clojure library for easy interop with the system clipboard.
 
+## Installation
+
+```
+[org.exupero/clipboard "0.1.0"]
+```
+
 ## Usage
 
 ```

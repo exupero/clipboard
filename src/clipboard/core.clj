@@ -7,7 +7,9 @@
 
 (defn slurp []
   (try
-    (.getTransferData (.getContents (clipboard) nil) (DataFlavor/stringFlavor))
+    (.. (clipboard)
+      (getContents nil)
+      (getTransferData (DataFlavor/stringFlavor)))
     (catch java.lang.NullPointerException e nil)))
 
 (defn spit [text]

@@ -21,7 +21,7 @@
         (map #(DataFlavor. %))
         ["text/html;class=java.lang.String"
          "text/html;class=java.io.Reader"
-         "text/html;charset=unicode;class=java.io.InputStream"]))
+         "text/html;charset=utf-8;class=java.io.InputStream"]))
 
 (defrecord HtmlSelection [html]
   Transferable
@@ -33,7 +33,7 @@
     (condp = (.getRepresentationClass flavor)
       java.lang.String html
       java.io.Reader (java.io.StringReader. html)
-      java.io.InputStream (java.io.StringBufferInputStream html))))
+      java.io.InputStream (java.io.StringBufferInputStream. html))))
 
 (defn spit-html [html]
   (.setContents (clipboard) (HtmlSelection. html) nil))

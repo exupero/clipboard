@@ -1,6 +1,7 @@
 (ns clipboard.core
   (:refer-clojure :exclude [slurp spit])
-  (:import [java.awt.datatransfer DataFlavor StringSelection Transferable]))
+  (:import [java.awt.datatransfer DataFlavor StringSelection Transferable]
+           [java.awt Toolkit]))
 
 (defn clipboard []
   (.getSystemClipboard (java.awt.Toolkit/getDefaultToolkit)))
@@ -37,3 +38,12 @@
 
 (defn spit-html [html]
   (.setContents (clipboard) (HtmlSelection. html) nil))
+
+(defmacro with-clipboard [& body]
+  `(binding [*out* (java.io.StringWriter.)]
+     (let [result# (do ~@body)]
+       (.. Toolkit
+           (getDefaultToolkit)
+           (getSystemClipboard)
+           (setContents (StringSelection. (str *out*)) nil))
+       result#)))

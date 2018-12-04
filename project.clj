@@ -1,4 +1,4 @@
-(defproject org.exupero/clipboard "0.1.0"
+(defproject org.exupero/clipboard "0.2.0"
   :description "Clojure interop with system clipboard"
   :url "https://github.com/exupero/clipboard"
   :license {:name "Eclipse Public License"

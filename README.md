@@ -18,6 +18,8 @@ A Clojure library for easy interop with the system clipboard.
 (clipboard/spit "Hello, World")
 
 (clipboard/spit-html "<strong>Hello</strong>, <em>World</em>")
+
+(clipboard/with-clipboard (println "Hello There!"))
 ```
 
 ## License
